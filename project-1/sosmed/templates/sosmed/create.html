@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{page_title}}
+{% endblock title %}
+
+{% block contents %}
+<h1>{{page_title}}</h1>
+<form method="POST">
+    {% csrf_token %}
+    <div class="row mb-3" style="width: 300px;">
+      {{akun_form}}
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{% endblock contents %}

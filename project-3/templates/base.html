@@ -1,0 +1,38 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <title>
+        
+        {% block page_title %}
+            
+        {% endblock page_title %}
+            
+    </title>
+
+    {% include 'snippets/styles.html' %}
+
+    {% include 'snippets/head_scripts.html' %}
+
+</head>
+<body>
+    
+    {% if request.user.is_authenticated %}
+    {% include 'snippets/navbar_logout.html' %}
+    {% else %}
+    {% include 'snippets/navbar_login.html' %}
+    {% endif %}
+        
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    
+    <div class="container">
+        <br>
+        {% block contents %}
+        
+        {% endblock contents %}
+
+    </div>
+        
+    {% include 'snippets/body_scripts.html' %}
+</body>
+</html>

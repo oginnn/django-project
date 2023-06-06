@@ -1,0 +1,25 @@
+<html lang="en">
+
+<head>
+    <title>
+
+        {% block title %}
+
+        {% endblock title %}
+
+    </title>
+    {% include 'snippets/styles.html' %}
+</head>
+
+<body>
+    <div class="container">
+
+        {% block contents %}
+
+        {% endblock contents %}
+
+    </div>
+    {% include 'snippets/scripts.html' %}
+</body>
+
+</html>
