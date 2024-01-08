@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %} My Reports {% endblock %}
+
+{% block content %}
+<div id="main">
+    <section id="one">
+        <h2>My All Reports</h2>
+        <div class="row">
+            {% for r in reporting %}
+            {% if r.is_active %}
+            <article class="col-6 col-12-xsmall work-item">
+                <a href="{% url 'main:reporting' slug=r.slug %}"><img src="{{r.image.url}}" alt="" height="300" width="400" /></a>
+                <h5>{{r.title}}</h5>
+                <p>{{r.date.date}}</p>
+            </article>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}
+

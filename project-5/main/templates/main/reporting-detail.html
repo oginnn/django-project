@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %} Reporting Result {% endblock %}
+
+{% block content %}
+<div id="main">
+    <section id="two">
+        <img src="{{object.image.url}}" alt="" height="400" width="600" >
+        <h3></h3>
+        <p>{{object.body}}</p>
+        <ul class="actions">
+            <li><a href="{{object.source}}" class="button">Source</a></li>
+        </ul>
+    </section>
+</div>
+{% endblock %}
