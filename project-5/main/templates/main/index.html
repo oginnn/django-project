@@ -19,10 +19,10 @@
         <section id="two">
             <h2>Recent Work</h2>
             <div class="row">
-            {% for a in reporting_results %}
+            {% for a in reporting_results|dictsort:'date' reversed %}
             {% if a.is_active %}
                 <article class="col-6 col-12-xsmall work-item">
-                   <a href="{% url 'main:reporting' slug=a.slug %}"><img src="{{a.image.url}}" alt="" height="300" width="400" /></a>
+                   <a href="{% url 'main:reporting' slug=a.slug %}"><img src="{{a.image_one.url}}" alt="" height="300" width="400" /></a>
                     <h4></h4>
                     <p>{{a.body}}</p>
                 </article>
