@@ -14,7 +14,6 @@ class UserProfile(models.Model):
     avatar = models.ImageField(blank=True, null=True, upload_to='avatar')
     title = models.CharField(max_length=200, blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
-    # skills = models.ManyToManyField(Skill, blank=True)
     cv = models.FileField(blank=True, null=True, upload_to='cv')
 
     def __str__(self) :
@@ -58,7 +57,7 @@ class ReportingResult(models.Model):
     class Meta:
         verbose_name_plural = 'Reporting Results'
         verbose_name = 'Reporting Result'
-        ordering = ['name']
+        ordering = ['date']
 
     date = models.DateTimeField(blank=True, null=True)
     name = models.CharField(max_length=200, blank=True, null=True)

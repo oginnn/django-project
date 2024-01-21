@@ -22,15 +22,20 @@
             {% for a in reporting_results|dictsort:'date' reversed %}
             {% if a.is_active %}
                 <article class="col-6 col-12-xsmall work-item">
-                   <a href="{% url 'main:reporting' slug=a.slug %}"><img src="{{a.image_one.url}}" alt="" height="300" width="400" /></a>
+                    {% if a.image_one %}
+                   <a href="{% url 'main:reporting' slug=a.slug %}"><img src="{{a.image_one.url}}" alt="" height="300" width="400"></a>
+                   {% else %}
+                   <a href="{% url 'main:reporting' slug=a.slug %}"><img src="{{a.video.url}}" alt="" height="300" width="400"></a>
+                   {% endif %}
                     <h4></h4>
-                    <p>{{a.body}}</p>
+                    <h5>{{a.name}}</h5>
+                    <p>{{a.date.date}}</p>
                 </article>
             {% endif %}
             {% endfor %}
             </div>
             <ul class="actions">
-                <li><a href="{% url 'main:reports' %}" class="button">View All</a></li>
+                <li><a href="{% url 'main:reports' 1 %}" class="button">View All</a></li>
             </ul>
         </section>
 
@@ -40,17 +45,19 @@
             <p>Hello! If you want to contact me or want to provide feedback about my work, you can send a message via the column listed or the contact provided below. Thank You!</p>
             <div class="row">
                 <div class="col-8 col-12-small">
-                    <form method="post" action="/">
+                    <form id="contactForm" method="post" action="{% url 'main:contact_view' %}">
                         {% csrf_token %}
                         <div class="row gtr-uniform gtr-50">
                             <div class="col-6 col-12-xsmall"><input type="text" name="name" id="name" placeholder="Name" /></div>
                             <div class="col-6 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Email" /></div>
                             <div class="col-12"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
                         </div>
+                        <br>
+                        <ul class="actions">
+                            <li><input type="submit" value="Send Message" /></li>
+                        </ul>
                     </form>
-                    <ul class="actions">
-                        <li><input type="submit" value="Send Message" /></li>
-                    </ul>
+                    {% include 'main/partials/message.html' %}
                 </div>
                 <div class="col-4 col-12-small">
                     <ul class="labeled-icons">
